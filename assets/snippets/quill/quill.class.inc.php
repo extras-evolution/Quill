@@ -143,9 +143,9 @@ if(!class_exists('Quill')) {
   //_______________________________________________________
   function getCC($tv_name,$tv_val) {
    global $modx;
-   include_once($modx->config["base_path"].'manager/includes/tmplvars.format.inc.php');
-   include_once($modx->config["base_path"].'manager/includes/tmplvars.commands.inc.php');
-   include_once($modx->config["base_path"].'manager/includes/tmplvars.inc.php');
+   include_once(MODX_MANAGER_PATH.'includes/tmplvars.format.inc.php');
+   include_once(MODX_MANAGER_PATH.'includes/tmplvars.commands.inc.php');
+   include_once(MODX_MANAGER_PATH.'includes/tmplvars.inc.php');
 
    $sql = "SELECT type,name,elements,default_text FROM ". $modx->getFullTableName('site_tmplvars'). " WHERE name='". $tv_name ."'";
    $rs = mysql_query($sql);
