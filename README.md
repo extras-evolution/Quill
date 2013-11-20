@@ -42,7 +42,7 @@ Examples:
 With this example the selectable values of a template variable could be prefilled in the backend:
 
 1. Create a resource with the pagetitle `Currencies` and the alias `currencies`
-2. Create some child resources in `Currencies` resource and set their pagetitles to `US dollar`, `Euro`, `Yen` etc. and set their aliases  to `use`, `eur`, `jpy`
+2. Create some child resources in `Currencies` resource and set their pagetitles to `US dollar`, `Euro`, `Yen` etc. and set their aliases  to `usd`, `eur`, `jpy`
 4. Create a template variable with the name `currency` and the type `DropDown List Menu` and input option value `@EVAL return $modx->runSnippet("Quill",array('parent'=>'currencies'));`
 5. Bind this template variable with a template
 6. Ready. Edit/create a resource with this template
