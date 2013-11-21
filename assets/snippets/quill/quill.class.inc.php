@@ -76,7 +76,7 @@ if (!class_exists('Quill')) {
 					break;
 			}
 			if ($this->default !== null) {
-				$ddItems = array_merge($this->genElement($this->default, '0'), $ddItems);
+				$ddItems = array_merge(array($this->genElement($this->default, '0')), $ddItems);
 			}
 			return implode('||', $ddItems);
 		}
