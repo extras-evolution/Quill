@@ -1,11 +1,11 @@
 <?php
 /**
  * Quill
- * 
+ *
  * Increases the usefulness of template variables
  *
  * @category    snippet
- * @version     1.0.5
+ * @version     1.0.6
  * @license     http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
  * @author		Dertlian
  * @internal    @properties
@@ -30,6 +30,8 @@ $params = array(
 	'tv' => isset($tv) ? $tv : (isset($name) ? $name : ''), // support for old param name [name]
 	'value' => isset($value) ? $value : null,
 	'filter' => isset($filter) ? $filter : null,
+	'type' => isset($type) ? $type : null,
+	'elements' => isset($elements) ? $elements : null,
 );
 
 $quill = new Quill($params);

@@ -1,10 +1,11 @@
 <?php
-/**
- * Snippetname:	Quill
- * Version:		1.0.5
- * Author:		Urique Dertlian (urique@unix.am)
- * Date:		20-11-2013
+/*
+  Name:          Quill
+  Version:       1.0.6
+  Author:	     Urique Dertlian (urique@unix.am)
+  Date:		     10-12-2013
  */
+
 if (!class_exists('Quill')) {
 
 	class Quill {
@@ -22,28 +23,30 @@ if (!class_exists('Quill')) {
 		var $indent;
 		var $sort;
 		var $sortdir;
+		var $filter;
+		var $type;
 		var $utf;
 
 		//_______________________________________________________
 		function Quill($params) {
 			global $modx;
-			$this->utf = ($modx->config['modx_charset'] == 'UTF-8');
 			$this->mode = $params['mode'];
-			$this->parentID = !is_numeric($params['parent']) ? $this->getDocumentByAlias($params['parent']) : $params['parent'];
 			$this->tv = $params['tv'];
 			$this->value = $params['value'];
+			$this->parentID = !is_numeric($params['parent']) ? $this->getDocumentByAlias($params['parent']) : $params['parent'];
 			$this->len = $params['len'];
-			$this->indent = $params['indent'];
 			$this->title = $params['title'];
 			$this->showPublishedOnly = $params['showPublishedOnly'];
 			$this->depth = $params['depth'];
-			$this->fdepth = $this->depth;
-			//if($modx->isFrontend() && isset($params['fdepth'])) $this->depth = $params['fdepth'];
 			$this->source = $params['source'];
 			$this->default = $params['default'];
+			$this->indent = $params['indent'];
 			$this->sort = $params['sort'];
 			$this->sortdir = $params['sortdir'];
 			$this->filter = $params['filter'];
+			$this->type = $params['type'];
+			$this->elements = $params['elements'];
+			$this->utf = ($modx->config['modx_charset'] == 'UTF-8');
 		}
 
 		//_______________________________________________________
@@ -195,6 +198,9 @@ if (!class_exists('Quill')) {
 						$tv_val = $tv['value'];
 					}
 				}
+				$row['type'] = ($this->type) ? $this->type : $row['type'];
+				$row['elements'] = ($this->elements) ? $this->elements : $row['elements'];
+				$row['elements'] = ($this->default) ? $this->default . $row['elements'] : $row['elements'];
 				return $this->cleanFormElement(renderFormElement($row['type'], $row['name'], $row['default_text'], $row['elements'], $tv_val, ''), $tv_name);
 			}
 
