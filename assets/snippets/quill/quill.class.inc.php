@@ -1,7 +1,7 @@
 <?php
 /*
   Name:          Quill
-  Version:       1.0.6
+  Version:       1.0.7
   Author:	     Urique Dertlian (urique@unix.am)
   Date:		     10-12-2013
  */
@@ -180,9 +180,8 @@ if (!class_exists('Quill')) {
 			include_once(MODX_MANAGER_PATH . 'includes/tmplvars.inc.php');
 
 			$sql = "SELECT type,name,elements,default_text FROM " . $modx->getFullTableName('site_tmplvars') . " WHERE name='" . $tv_name . "'";
-			$rs = mysql_query($sql);
-			$row = mysql_fetch_assoc($rs);
-			mysql_free_result($rs);
+			$res = $modx->db->query($sql);
+			$row = $modx->db->getRow($res);
 
 			if ($this->mode == 'control') {
 				if (!$tv_val) {
@@ -190,7 +189,7 @@ if (!class_exists('Quill')) {
 						$tv_val = $_REQUEST[$tv_name];
 						if (is_array($tv_val))
 							$tv_val = implode('||', $tv_val);
-						$tv_val = mysql_escape_string($tv_val);
+						$tv_val = htmlspecialchars($tv_val, ENT_QUOTES, $modx->config['modx_charset']);
 					}
 					else {
 						$docid = $modx->getDocumentIdentifier;
